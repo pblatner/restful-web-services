@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import io.swagger.v3.oas.annotations.Operation;
-
 
 @RestController
 public class UserResource {
@@ -30,7 +28,6 @@ public class UserResource {
 	@Autowired
 	private UserDaoService service;
 	
-	//@Operation(summary = "Retrieve all the users", description = "Retrieve all the users detailed description", tags = { "user" })
 	@GetMapping("/users")
 	public CollectionModel<EntityModel<User>> retrieveAllUsers() 
 	{

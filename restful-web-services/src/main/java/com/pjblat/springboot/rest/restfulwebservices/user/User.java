@@ -5,6 +5,9 @@ import java.util.Date;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+/*
+ * Adding comment to test my tag.
+ */
 public class User 
 {
 	private Integer id;

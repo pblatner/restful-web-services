@@ -1,30 +1,54 @@
 package com.pjblat.springboot.rest.restfulwebservices;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import com.pjblat.springboot.rest.restfulwebservices.user.UserResource;
 
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 @Configuration
 @EnableSwagger2WebMvc
-@ComponentScan(basePackageClasses = {
-	    UserResource.class
-	})
+@ComponentScan(basePackageClasses = { UserResource.class })
 /*
- * Swagger UI - http://localhost:8080/swagger-ui.html
- * Raw Swagger JSON - http://localhost:8080/v2/api-docs
+ * Swagger UI - http://localhost:8080/swagger-ui.html Raw Swagger JSON -
+ * http://localhost:8080/v2/api-docs
  */
-public class SwaggerConfig 
+public class SwaggerConfig
 {
+	public static final Contact DEFAULT_CONTACT = new Contact(
+			"Pete Blatner", 
+			"http://pjblat.com", 
+			"pblatner@gmail.com");
+	public static final ApiInfo DEFAULT_API_INFO = new ApiInfo(
+			"Awesome API Title", 
+			"Awesome API Description", 
+			"1.0", 
+			"urn:tos",
+			DEFAULT_CONTACT, 
+			"Apache 2.0", 
+			"http://www.apache.org/licenses/LICENSE-2.0", 
+			new ArrayList<>());
+	private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES = 
+			new HashSet<String>(Arrays.asList("application/json", "application/xml"));
+
 	@Bean
-	public Docket api() 
+	public Docket api()
 	{
-		return new Docket(DocumentationType.SWAGGER_2);
+		return new Docket(DocumentationType.SWAGGER_2)
+				.apiInfo(DEFAULT_API_INFO)
+				.produces(DEFAULT_PRODUCES_AND_CONSUMES)
+				.consumes(DEFAULT_PRODUCES_AND_CONSUMES);
 	}
 
 }

@@ -13,7 +13,11 @@ class UserDaoService {
 	private static int usersCount = 3;
 	
 	static {
-		users.add(new User(1, "Adam", new Date()));
+		User user1 = new User(1, "Adam", new Date());
+		user1.getPosts().add(new Post(1, "subject 1", "details for the first post", new Date()));
+		user1.getPosts().add(new Post(2, "subject 2", "details for the second post", new Date()));
+		user1.getPosts().add(new Post(3, "subject 3", "details for the third post", new Date()));
+		users.add(user1);
 		users.add(new User(2, "Eve", new Date()));
 		users.add(new User(3, "Jack", new Date()));
 	}
